@@ -12,3 +12,12 @@
 .ReactCollapse--collapse {
   transition: 500ms;
 }
+
+.scroll-bar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-bar::-webkit-scrollbar{
+  display: none;
+}

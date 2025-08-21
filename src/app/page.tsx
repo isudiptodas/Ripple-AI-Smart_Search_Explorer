@@ -7,15 +7,20 @@ import { SiGooglenews } from "react-icons/si";
 import { RiPerplexityLine } from "react-icons/ri";
 import { SiOpenai } from "react-icons/si";
 import { FaGoogle } from "react-icons/fa";
-import { useCollapse } from "react-collapsed";
 import { faq } from "@/data/faq";
 import { SiGooglegemini } from "react-icons/si";
 import { useState } from "react";
 import { Collapse } from 'react-collapse';
+import { useRouter } from "next/navigation";
 
 function page() {
 
   const [current, setCurrnt] = useState<number | null>(null);
+  const router = useRouter();
+
+  const navigate = (link: string) => {
+    router.push(link);
+  }
 
   return (
     <>
@@ -43,15 +48,15 @@ function page() {
 
         {/* links */}
         <div className={`w-full px-5 py-3 md:mt-5 grid grid-cols-1 justify-items-center gap-3 sm:grid-cols-3`}>
-          <div className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
+          <div onClick={() => navigate('/chat')} className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
             <p className={`font-Montserrat text-white text-[12px] lg:text-lg`}>Continue with Chat</p>
             <span className={`text-white`}><IoChatboxSharp /></span>
           </div>
-          <div className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
+          <div onClick={() => navigate('/news')} className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
             <p className={`font-Montserrat text-white text-[12px] lg:text-lg`}>Continue with News</p>
             <span className={`text-white`}><FaRegNewspaper /></span>
           </div>
-          <div className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
+          <div onClick={() => navigate('/share')} className={`w-full rounded-full hover:bg-[#2d2d2d] bg-black flex justify-center items-center gap-3 py-5 cursor-pointer active:scale-95 duration-150 ease-in-out`}>
             <p className={`font-Montserrat text-white text-[12px] lg:text-lg`}>Continue with Share</p>
             <span className={`text-white`}><FaShareAlt /></span>
           </div>
@@ -61,7 +66,7 @@ function page() {
         <div className={`w-full h-auto mt-5 md:mt-10 px-5 flex flex-col justify-start items-center gap-4`}>
           <h2 className={`w-full text-center font-Archivo text-xl md:text-2xl xl:text-4xl font-bold`}>Inspired By</h2>
 
-          <div className={`w-full mt-2 h-auto grid grid-cols-2 md:grid-cols-4 justify-items-center gap-3 `}>
+          <div className={`w-full mt-2 h-auto grid grid-cols-2 sm:grid-cols-4 justify-items-center gap-3 `}>
             <div className={`w-full cursor-pointer h-32 bg-[#d9d9d9a8] rounded-lg lg:rounded-2xl flex flex-col justify-center items-center group gap-3 lg:gap-2 overflow-hidden relative`}>
               <span className={`text-3xl group-hover:text-white duration-200 ease-in-out lg:text-5xl z-20 opacity-50`}><SiGooglenews /></span>
               <p className={`font-Montserrat group-hover:text-white duration-200 ease-in-out text-[12px] z-20 md:text-[15px] lg:text-lg`}>Google News</p>
@@ -116,9 +121,16 @@ function page() {
               const open = index + 1 === current ? true : false;
               return <div key={index} className={`w-full h-auto pb-[1px] bg-gradient-to-r from-transparent via-red-700 to-transparent flex justify-center items-center`}>
                 <div className={`w-full h-full bg-white py-4 flex flex-col justify-start items-center px-3`}>
-                  <div className={`w-full cursor-pointer flex justify-between items-center`} onClick={() => setCurrnt(obj.id)}>
+                  <div className={`w-full cursor-pointer flex justify-between items-center`} onClick={() => {
+                    if(current === null){
+                      setCurrnt(obj.id);
+                    }
+                    else{
+                      setCurrnt(null);
+                    }
+                  }}>
                     <p className={`text-black font-Arapey text-lg md:text-2xl font-semibold`}>{obj.question}</p>
-                    <span><SiGooglegemini /></span>
+                    <span className={`xl:text-2xl ${open ? "rotate-45" : "rotate-0"} duration-200 ease-in-out`}><SiGooglegemini /></span>
                   </div>
                   <Collapse isOpened={open}>
                     <div className={`w-full py-4 pr-5`}>
