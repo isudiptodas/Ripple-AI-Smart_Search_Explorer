@@ -2,7 +2,7 @@ import { supabase } from "@/utils/supabase";
 import nodeCron from "node-cron";
 
 export const deleteFiles = async () => {
-    const oldTime = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
+    const oldTime = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
     try {
         const { data, error } = await supabase
@@ -38,3 +38,4 @@ export const deleteFiles = async () => {
 //     console.log("Running cleanup job at", new Date().toISOString());
 //     await deleteFiles();
 // });
+
