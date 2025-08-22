@@ -48,7 +48,7 @@ function page() {
         const entered = {
           path: data?.path,
           protected: password === null ? false : true,
-          password: password,
+          password: password?.trim(),
           fullpath: `${process.env.NEXT_PUBLIC_COPY_URL}/${data?.path}`
         }
 
@@ -113,7 +113,7 @@ function page() {
 
           <div className={`${file === null ? "hidden" : "block"} sm:w-[70%] md:w-[50%] xl:w-[30%] px-5 flex flex-col justify-start items-center mt-5`}>
             <p className={`w-full font-Montserrat text-sm md:text-[16px] text-center text-black`}>Enable Password protection</p>
-            <input type="text" className={`w-full mt-4 text-[12px] lg:text-[14px] rounded-lg bg-gray-200 outline-none text-black font-Montserrat placeholder-gray-700 px-3 py-2`} placeholder="Enter password (Optional)" />
+            <input onChange={(e) => setPassword(e.target.value)} type="text" className={`w-full mt-4 text-[12px] lg:text-[14px] rounded-lg bg-gray-200 outline-none text-black font-Montserrat placeholder-gray-700 px-3 py-2`} placeholder="Enter password (Optional)" />
             <p onClick={handleUpload} className={`w-auto ${file === null ? "hidden" : "block"} mt-4 px-4 py-2 z-30 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 text-white font-Montserrat text-[12px] cursor-pointer active:scale-95 duration-150 ease-in-out hover:opacity-80 flex justify-center items-center gap-2`}>Upload File <IoCloudUploadOutline /></p>
           </div>
 
