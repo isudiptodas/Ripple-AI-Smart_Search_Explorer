@@ -49,7 +49,7 @@ function page() {
           path: data?.path,
           protected: password === null ? false : true,
           password: password?.trim(),
-          fullpath: `http://localhost:3000/share/${data?.path}`
+          fullpath: `https://ripple-ai-six.vercel.app/share/${data?.path}`
         }
 
         const { error: er } = await supabase
@@ -62,7 +62,7 @@ function page() {
 
         toast.dismiss(id);
         toast.success("File uploaded");
-        const fullPath = `http://localhost:3000/share/${data?.path}`;
+        const fullPath = `https://ripple-ai-six.vercel.app/share/${data?.path}`;
         setUrl(fullPath);
       } catch (err) {
         console.log(err);
