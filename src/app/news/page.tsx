@@ -97,7 +97,7 @@ function page() {
                         <img src={newsData?.image_url} className={`w-full h-full object-cover`} />
                     </div>
                     <h1 className={`w-full mt-4 text-start font-Montserrat text-sm md:text-[16px] font-bold`}>{newsData?.title}</h1>
-                    <h1 className={`w-full mt-2 lg:max-h-12 scroll-bar overflow-y-auto text-start font-Montserrat text-[10px] md:text-[12px]`}>{newsData?.description}</h1>
+                    <h1 className={`w-full mt-2 max-h-20 lg:max-h-12 scroll-bar overflow-y-auto text-start font-Montserrat text-[10px] md:text-[12px]`}>{newsData?.description}</h1>
                     <h1 className={`w-full mt-5 text-start font-Montserrat text-[10px] md:text-[12px]`}><span className={`font-semibold`}>Publication Date :</span> {newsData?.pubDate.split(' ')[0]}</h1>
                     <h1 className={`w-full text-start font-Montserrat text-[10px] md:text-[12px]`}><span className={`font-semibold`}>Source :</span> {newsData?.source_name}</h1>
                     <div className={`w-full py-2 flex justify-start items-start`}>

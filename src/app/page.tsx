@@ -129,7 +129,7 @@ function page() {
                       setCurrnt(null);
                     }
                   }}>
-                    <p className={`text-black font-Arapey text-lg md:text-2xl font-semibold`}>{obj.question}</p>
+                    <p className={`text-black font-Arapey text-[16px] md:text-2xl font-semibold`}>{obj.question}</p>
                     <span className={`xl:text-2xl ${open ? "rotate-45" : "rotate-0"} duration-200 ease-in-out`}><SiGooglegemini /></span>
                   </div>
                   <Collapse isOpened={open}>
