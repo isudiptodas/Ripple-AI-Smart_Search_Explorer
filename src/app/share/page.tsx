@@ -49,7 +49,7 @@ function page() {
           path: data?.path,
           protected: password === null ? false : true,
           password: password?.trim(),
-          fullpath: `${process.env.NEXT_PUBLIC_COPY_URL}/${data?.path}`
+          fullpath: `http://localhost:3000/share/${data?.path}`
         }
 
         const { error: er } = await supabase
@@ -62,7 +62,7 @@ function page() {
 
         toast.dismiss(id);
         toast.success("File uploaded");
-        const fullPath = `${process.env.NEXT_PUBLIC_COPY_URL}/${data?.path}`;
+        const fullPath = `http://localhost:3000/share/${data?.path}`;
         setUrl(fullPath);
       } catch (err) {
         console.log(err);

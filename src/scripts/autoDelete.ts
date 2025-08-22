@@ -38,4 +38,3 @@ export const deleteFiles = async () => {
 //     console.log("Running cleanup job at", new Date().toISOString());
 //     await deleteFiles();
 // });
-

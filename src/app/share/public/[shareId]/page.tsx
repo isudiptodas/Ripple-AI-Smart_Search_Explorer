@@ -30,7 +30,7 @@ function page() {
 
     useEffect(() => {
         if (shareId) {
-            const url = `${process.env.NEXT_PUBLIC_COPY_URL}/public/${decodeURIComponent(shareId as string)}`;
+            const url = `http://localhost:3000/share/public/${decodeURIComponent(shareId as string)}`;
             const fetchData = async () => {
                 const { data, error } = await supabase
                     .from(process.env.NEXT_PUBLIC_SUPABASE_TABLE_NAME as string)
