@@ -14,7 +14,7 @@ export const deleteFiles = async () => {
             console.log(error);
         }
 
-        if (data) {
+        if (data && data?.length>0) {
             for (const file of data) {
                 const { data, error } = await supabase
                     .storage
@@ -38,3 +38,4 @@ export const deleteFiles = async () => {
 //     console.log("Running cleanup job at", new Date().toISOString());
 //     await deleteFiles();
 // });
+
