@@ -96,7 +96,7 @@ function page() {
                 if (!(selected.size <= 52428800)) {
                   toast.error("File size must be under 50 MB");
                   return;
-                }
+                } 
                 setFile(selected);
                 //console.log(selected);
               }
@@ -136,3 +136,4 @@ function page() {
 }
 
 export default page
+
