@@ -57,8 +57,7 @@ function page() {
 
     const api = process.env.NEXT_PUBLIC_GEMINI_API;
     const ai = new GoogleGenAI({ apiKey: api });
-    let msg = 'Getting answer ...';
-    const id = toast.loading(msg);
+    const geminiId = toast.loading('Getting Answer ...');
 
     try {
       const response = await ai.models.generateContent({
@@ -67,21 +66,22 @@ function page() {
       });
       //console.log(response.text);
       setOutputText(response.text);
+      toast.dismiss(geminiId);
 
-      msg = 'Collecting more resources ...';
-
+      const respId = toast.loading('Collecting resources ...');
       const res = await axios.post(`/api/get-response`, {
         query: input
       });
       const data = res.data.data;
       setVideos(data?.inline_videos);
       setSources(data?.organic_results);
-      setImages(data?.inline_images);
+      setImages(data?.inline_images); 
+      toast.dismiss(respId);
     } catch (err) {
       console.log(err);
     }
     finally {
-      toast.dismiss(id);
+      toast.dismiss(geminiId);
     }
   }
 
@@ -216,5 +216,6 @@ function page() {
 }
 
 export default page
+
 
 
