@@ -57,8 +57,8 @@ function page() {
 
     const api = process.env.NEXT_PUBLIC_GEMINI_API;
     const ai = new GoogleGenAI({ apiKey: api });
-
-    const id = toast.loading('Fetching results . . .');
+    let msg = 'Getting answer ...';
+    const id = toast.loading(msg);
 
     try {
       const response = await ai.models.generateContent({
@@ -67,6 +67,8 @@ function page() {
       });
       //console.log(response.text);
       setOutputText(response.text);
+
+      msg = 'Collecting more resources ...';
 
       const res = await axios.post(`/api/get-response`, {
         query: input
@@ -214,4 +216,5 @@ function page() {
 }
 
 export default page
+
 
