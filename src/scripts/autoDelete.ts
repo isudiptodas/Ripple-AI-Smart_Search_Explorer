@@ -1,11 +1,11 @@
-import { supabase } from "@/utils/supabase";
+import { supabase, supabaseAdmin } from "@/utils/supabase";
 import nodeCron from "node-cron";
 
 export const deleteFiles = async () => {
     const oldTime = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseAdmin
             .from(process.env.NEXT_PUBLIC_SUPABASE_TABLE_NAME as string)
             .select()
             .lt('created_at', oldTime);
@@ -16,14 +16,14 @@ export const deleteFiles = async () => {
 
         if (data && data?.length>0) {
             for (const file of data) {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseAdmin
                     .storage
                     .from(process.env.NEXT_PUBLIC_SUPABASE_BUCKET_ID as string)
                     .remove([file?.path]);
             }
 
             for (const row of data) {
-                const response = await supabase
+                const response = await supabaseAdmin
                     .from(process.env.NEXT_PUBLIC_SUPABASE_TABLE_NAME as string)
                     .delete()
                     .eq('id', row.id)
@@ -38,3 +38,4 @@ export const deleteFiles = async () => {
 //     console.log("Running cleanup job at", new Date().toISOString());
 //     await deleteFiles();
 // });
+
