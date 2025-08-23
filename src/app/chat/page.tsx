@@ -82,6 +82,7 @@ function page() {
     }
     finally {
       toast.dismiss(geminiId);
+      setInput('');
     }
   }
 
@@ -198,14 +199,14 @@ function page() {
             </div>}
 
             <h1 className={`w-full px-5 ${outputText === '' ? 'block' : 'hidden'} text-center font-Archivo text-5xl lg:text-7xl font-bold opacity-30 absolute top-1/2 -translate-y-1/2 px-auto`}>What's on your mind today ?</h1>
-            <p onClick={handleReadOut} className={`px-4 py-2 active:scale-95 duration-150 ease-in-out ${outputText ? 'block' : 'hidden'} ${isSpeaking ? 'hidden' : 'block'} absolute bottom-5 text-[12px] right-5 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white font-Montserrat cursor-pointer flex justify-center items-center gap-3`}>Read Loud <AiOutlineSound /></p>
+            <p onClick={handleReadOut} className={`px-4 py-2 active:scale-95 duration-150 ease-in-out ${outputText && option === 'answer' ? 'block' : 'hidden'} ${isSpeaking ? 'hidden' : 'block'} absolute bottom-5 text-[12px] right-5 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white font-Montserrat cursor-pointer flex justify-center items-center gap-3`}>Read Loud <AiOutlineSound /></p>
             <p onClick={handleStop} className={`px-4 py-2 active:scale-95 duration-150 ease-in-out ${isSpeaking ? 'block' : 'hidden'} absolute bottom-5 text-[12px] right-5 rounded-full bg-gradient-to-r from-red-400 to-red-600 text-white font-Montserrat cursor-pointer flex justify-center items-center gap-3`}>Stop <FaRegStopCircle /></p>
 
           </div>
 
           {/* input box */}
           <div className={`w-full md:w-[70%] pb-5 px-5 h-auto flex justify-center relative items-center`}>
-            <textarea onChange={(e) => setInput(e.target.value)} className={`w-full rounded-md h-20 lg:h-24 bg-gray-200 outline-none font-Montserrat text-[12px] text-black placeholder-gray-700 lg:text-sm pl-3 pr-12 py-2`} placeholder="Ask anything" />
+            <textarea onChange={(e) => setInput(e.target.value)} className={`w-full rounded-md h-20 lg:h-24 bg-gray-200 outline-none font-Montserrat text-black placeholder-gray-700 text-sm xl:text-lg pl-3 pr-12 py-2`} placeholder="Ask anything" />
             <span onClick={fetchData} className={`p-2 rounded-md bg-gradient-to-r from-red-400 via-red-600 to-red-800 text-sm md:text-lg text-white cursor-pointer active:scale-95 duration-150 ease-in-out absolute bottom-7 right-7`}><BsSendFill /></span>
           </div>
         </div>
@@ -216,6 +217,7 @@ function page() {
 }
 
 export default page
+
 
 
 
