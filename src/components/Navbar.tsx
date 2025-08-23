@@ -18,9 +18,9 @@ function Navbar({pathname} : {pathname : string}) {
                 <span onClick={() => setMenuVisible(!menuVisible)} className={`fixed ${menuVisible ? "text-white" : "text-black"} text-xl cursor-pointer md:hidden z-30 right-5`}>{menuVisible ? <RxCross1 /> : <TbLayoutNavbar />}</span>
 
                 <div className={`fixed ${menuVisible ? "translate-y-0" : "-translate-y-full"} top-0 rounded-b-3xl backdrop-blur-3xl bg-white/40 flex flex-col justify-start items-start gap-3 px-3 pt-14 pb-10 w-full duration-300 ease-in-out`}>
-                    <Link href='/chat' className={`w-full text-white font-Montserrat font-semibold pb-3 border-b-[1px] border-b-white text-xl`}>Chat</Link>
-                    <Link href='/news' className={`w-full text-white font-Montserrat font-semibold pb-3 border-b-[1px] border-b-white text-xl`}>News</Link>
-                    <Link href='/share' className={`w-full text-white font-Montserrat font-semibold pb-3 border-b-[1px] border-b-white text-xl`}>Share</Link>
+                    <Link href='/chat' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>Chat</Link>
+                    <Link href='/news' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>News</Link>
+                    <Link href='/share' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>Share</Link>
                 </div>
 
                 <div className={`w-auto hidden md:flex justify-between items-start gap-6 px-3 duration-300 ease-in-out`}>
@@ -35,4 +35,5 @@ function Navbar({pathname} : {pathname : string}) {
 }
 
 export default Navbar
+
 
