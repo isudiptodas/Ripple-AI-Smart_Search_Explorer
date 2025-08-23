@@ -17,7 +17,7 @@ function Navbar({pathname} : {pathname : string}) {
                 <img onClick={() => {router.push('/')}} src='/assets/logo.png' className={`h-8 cursor-pointer xl:h-12`} />
                 <span onClick={() => setMenuVisible(!menuVisible)} className={`fixed ${menuVisible ? "text-white" : "text-black"} text-xl cursor-pointer md:hidden z-30 right-5`}>{menuVisible ? <RxCross1 /> : <TbLayoutNavbar />}</span>
 
-                <div className={`fixed ${menuVisible ? "translate-y-0" : "-translate-y-full"} top-0 rounded-b-3xl backdrop-blur-3xl bg-white/40 flex flex-col justify-start items-start gap-3 px-3 pt-14 pb-10 w-full duration-300 ease-in-out`}>
+                <div className={`fixed ${menuVisible ? "translate-y-0" : "-translate-y-full"} top-0 rounded-b-3xl border-b-2 border-b-red-600 shadow-2xl bg-white flex flex-col justify-start items-start gap-3 px-3 pt-14 pb-10 w-full duration-300 ease-in-out`}>
                     <Link href='/chat' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>Chat</Link>
                     <Link href='/news' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>News</Link>
                     <Link href='/share' className={`w-full text-black font-Montserrat font-semibold pb-3 border-b-[1px] border-b-red-600 text-xl`}>Share</Link>
@@ -35,5 +35,6 @@ function Navbar({pathname} : {pathname : string}) {
 }
 
 export default Navbar
+
 
 
