@@ -203,7 +203,7 @@ function page() {
 
           {/* input box */}
           <div className={`w-full md:w-[70%] pb-5 px-5 h-auto flex justify-center relative items-center`}>
-            <textarea onChange={(e) => setInput(e.target.value)} className={`w-full rounded-md h-20 lg:h-24 bg-gray-200 outline-none font-Montserrat text-[10px] text-black placeholder-gray-700 lg:text-sm pl-3 pr-12 py-2`} placeholder="Ask anything" />
+            <textarea onChange={(e) => setInput(e.target.value)} className={`w-full rounded-md h-20 lg:h-24 bg-gray-200 outline-none font-Montserrat text-[12px] text-black placeholder-gray-700 lg:text-sm pl-3 pr-12 py-2`} placeholder="Ask anything" />
             <span onClick={fetchData} className={`p-2 rounded-md bg-gradient-to-r from-red-400 via-red-600 to-red-800 text-sm md:text-lg text-white cursor-pointer active:scale-95 duration-150 ease-in-out absolute bottom-7 right-7`}><BsSendFill /></span>
           </div>
         </div>
@@ -214,3 +214,4 @@ function page() {
 }
 
 export default page
+
