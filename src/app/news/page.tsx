@@ -129,7 +129,7 @@ function page() {
                 <div className={`w-full mt-3 h-auto flex flex-col justify-start items-center gap-3`}>
                     <h2 className={`w-full text-start font-Archivo font-semibold text-2xl px-5`}>Latest News</h2>
 
-                    <div className={`w-full flex justify-start items-start gap-3 py-3 px-5 scroll-bar overflow-x-auto`}>
+                    <div className={`w-full flex justify-start ${latestNews && latestNews?.length > 0 ? "block" : "hidden"} items-start gap-3 py-3 px-5 scroll-bar overflow-x-auto`}>
                         {latestNews?.map((news, index) => {
                             return <div key={index} onClick={() => {
                                 setNewsVisible(true);
@@ -152,6 +152,15 @@ function page() {
                             </div>
                         })}
                     </div>
+
+                    <div className={`w-full h-auto px-5 overflow-x-auto ${latestNews && latestNews?.length > 0 ? "hidden" : "block"} scroll-bar flex justify-start items-start gap-3`}>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                        <div className={`w-72 h-48 shrink-0 rounded-lg bg-gray-200`}></div>
+                    </div>
                 </div>
 
                 <hr className={`w-[90%] md:w-[95%] md:rounded-full h-[2px] md:h-[4px] mt-5 bg-gradient-to-r from-red-400 via-red-700 to-red-900`} />
@@ -161,7 +170,7 @@ function page() {
                     <h2 className={`w-full mt-5 text-start font-Archivo font-semibold text-2xl capitalize px-5 ${inputVisible ? "hidden" : "block"}`}>{newsOption==='india' ? "All": newsOption}</h2>
                     <h2 className={`w-full mt-5 text-start font-Archivo font-semibold text-2xl capitalize px-5 ${inputVisible ? "block" : "hidden"}`}>Results for {input}</h2>
 
-                    <div className={`w-full mt-5 h-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5`}>
+                    <div className={`w-full ${categoryNews && categoryNews.length > 0 ? "block" : "hidden"} mt-5 h-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5`}>
                         {categoryNews?.map((news, index) => {
                             return <div key={index} onClick={() => {
                                 setNewsVisible(true);
@@ -187,6 +196,15 @@ function page() {
                                 </div>
                             </div>
                         })}
+                    </div>
+
+                    <div className={`w-full mt-5 ${categoryNews && categoryNews.length > 0 ? "hidden" : "block"} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5 h-auto`}>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
+                        <div className={`w-full rounded-lg h-28 md:h-32 bg-gray-200`}></div>
                     </div>
 
                 </div>

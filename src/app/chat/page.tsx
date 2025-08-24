@@ -55,6 +55,9 @@ function page() {
       return;
     }
 
+    const tempStr = input;
+    setInput('');
+
     const api = process.env.NEXT_PUBLIC_GEMINI_API;
     const ai = new GoogleGenAI({ apiKey: api });
     const geminiId = toast.loading('Getting Answer ...');
@@ -62,20 +65,35 @@ function page() {
     try {
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
-        contents: input,
+        contents: tempStr,
       });
       //console.log(response.text);
-      setOutputText(response.text);
+      const temp: string[] | undefined = response.text?.split(" ");
+      let index = 0;
+
+      if (temp && temp.length > 0) {
+        let index = 0;
+
+        const interval = setInterval(() => {
+          setOutputText((prev) => prev + temp[index] + " ");
+          index++;
+
+          if (index >= temp.length) {
+            clearInterval(interval);
+          }
+        }, 50);
+      };
+
       toast.dismiss(geminiId);
 
       const respId = toast.loading('Collecting resources ...');
       const res = await axios.post(`/api/get-response`, {
-        query: input
+        query: tempStr
       });
       const data = res.data.data;
       setVideos(data?.inline_videos);
       setSources(data?.organic_results);
-      setImages(data?.inline_images); 
+      setImages(data?.inline_images);
       toast.dismiss(respId);
     } catch (err) {
       console.log(err);

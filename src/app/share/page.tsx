@@ -83,7 +83,7 @@ function page() {
 
         <div className={`w-full px-5 flex flex-col justify-start items-center mt-24 lg:mt-32 py-4`}>
 
-          <div className={`w-[80%] cursor-pointer sm:w-[70%] md:w-[50%] xl:w-[30%] h-auto relative overflow-hidden rounded-lg lg:rounded-2xl border-2 lg:border-4 py-5 px-5 border-dashed border-red-600 flex flex-col justify-center items-center`}>
+          <div className={`w-[80%] cursor-pointer sm:w-[70%] md:w-[50%] xl:w-[40%] h-auto relative overflow-hidden rounded-lg lg:rounded-2xl border-2 lg:border-4 py-16 px-5 border-dashed border-red-600 flex flex-col justify-center items-center`}>
             <p className={`w-full text-center font-Montserrat text-2xl lg:text-4xl font-semibold`}>Upload a file</p>
             <input onChange={(e) => {
               if (e?.target?.files?.[0]) {
