@@ -18,4 +18,10 @@ export const faq = [
         answer : `Yes, absolutely ! You can use Ripple absolutely for free lifetime. No restrictions on usage.
         Although we will encourage you to keep some decency and maintain legal limitations.`
     },
+    {
+        id: 4,
+        question: `How secure is my uploaded file ?`,
+        answer : `When you upload a file to share with others, that file remains in our storage service for 24 hours
+        and after that automatically gets deleted.`
+    },
 ]
