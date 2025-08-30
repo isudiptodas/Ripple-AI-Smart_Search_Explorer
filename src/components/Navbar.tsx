@@ -21,14 +21,14 @@ function Navbar({pathname} : {pathname : string}) {
                     <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-red-600" : "text-black"} font-Montserrat font-semibold pb-3 text-xl`}>Chat</Link>
                     <Link href='/news' className={`w-full ${pathname === '/news' ? "text-red-600" : "text-black"} font-Montserrat font-semibold pb-3 text-xl`}>News</Link>
                     <Link href='/share' className={`w-full ${pathname === '/share' ? "text-red-600" : "text-black"} font-Montserrat font-semibold pb-3 text-xl`}>Share</Link>
-                    <Link href='/decision-arena' className={`w-full ${pathname === '/decision-arena' ? "text-red-600" : "text-black"} font-Montserrat font-semibold pb-3 text-xl flex justify-start items-start gap-2`}>Decision Arena <span className={`text-[10px] text-gray-400 px-4 py-2 rounded-full border-[1px] border-gray-400`}>Beta</span></Link>
+                    <Link href='/decision-arena' className={`w-full ${pathname === '/decision-arena' ? "text-red-600" : "text-black"} font-Montserrat font-semibold pb-3 text-xl flex justify-start items-start gap-2`}>Decision Arena <span className={`text-[10px] text-gray-400 px-4 py-1 rounded-full border-[1px] border-gray-400`}>Beta</span></Link>
                 </div>
 
                 <div className={`w-auto hidden md:flex justify-between items-start gap-6 px-3 duration-300 ease-in-out`}>
-                    <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-white bg-red-500 px-4" : "text-black"} py-2 rounded-full font-Montserrat font-semibold text-[14px] xl:text-[17px]`}>Chat</Link>
-                    <Link href='/news' className={`w-full ${pathname === '/news' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[17px] rounded-full`}>News</Link>
-                    <Link href='/share' className={`w-full ${pathname === '/share' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[17px] rounded-full`}>Share</Link>
-                    <Link href='/decision-arena' className={`w-full ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[17px] rounded-full`}>Decision Arena (Beta)</Link>
+                    <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-white bg-red-500 px-4" : "text-black"} py-2 rounded-full font-Montserrat font-semibold text-[14px] xl:text-[16px]`}>Chat</Link>
+                    <Link href='/news' className={`w-full ${pathname === '/news' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>News</Link>
+                    <Link href='/share' className={`w-full ${pathname === '/share' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Share</Link>
+                    <Link href='/decision-arena' className={`w-full ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Decision Arena (Beta)</Link>
                 </div>
 
             </div>
@@ -37,6 +37,7 @@ function Navbar({pathname} : {pathname : string}) {
 }
 
 export default Navbar
+
 
 
 
