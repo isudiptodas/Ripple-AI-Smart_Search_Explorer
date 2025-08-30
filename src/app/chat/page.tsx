@@ -81,7 +81,7 @@ function page() {
           if (index >= temp.length) {
             clearInterval(interval);
           }
-        }, 50);
+        }, 20);
       };
 
       toast.dismiss(geminiId);
@@ -235,6 +235,7 @@ function page() {
 }
 
 export default page
+
 
 
 
