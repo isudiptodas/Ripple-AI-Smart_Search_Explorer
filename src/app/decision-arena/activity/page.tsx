@@ -4,7 +4,7 @@ import { decisionQuestions } from "@/data/decisionArena"
 import Link from "next/link";
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { VscDebugContinue } from "react-icons/vsc";
 import { VscDebugRestart } from "react-icons/vsc";
@@ -27,7 +27,7 @@ interface DecisionCategory {
   questions: Question[];
 }
 
-function page() {
+function Page() {
 
     const search = useSearchParams();
     const id = Number(search.get('id'));
@@ -88,4 +88,10 @@ function page() {
     )
 }
 
-export default page
+export default function PageWrapper() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Page />
+        </Suspense>
+    )
+}
