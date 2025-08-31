@@ -16,7 +16,7 @@ function page() {
 
                 <div className={`w-full mt-20 py-5 sm:pt-10 px-4 md:px-10 flex flex-col justify-start items-center`}>
                     <div className={`w-full overflow-hidden relative rounded-lg xl:rounded-xl h-auto flex flex-col justify-center items-center`}>
-                        <img src="/assets/decision.jpg" className={`w-full sm:h-52 md:h-56`}/>
+                        <img src="/assets/decision.jpg" className={`w-full h-52 sm:h-60 md:h-64`}/>
                         <div className={`w-full h-full px-5 absolute flex flex-col justify-center items-center overflow-hidden`}>
                             <h1 className={`w-full text-white text-center text-lg sm:text-xl font-Montserrat`}>Welcome to </h1>
                             <h1 className={`w-full text-white md:w-auto lg:font-bold text-2xl sm:text-3xl md:text-4xl text-center font-Archivo font-semibold`}>Interactive Decision Making </h1>
