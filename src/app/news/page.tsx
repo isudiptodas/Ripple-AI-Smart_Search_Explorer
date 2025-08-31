@@ -88,7 +88,7 @@ function page() {
 
     return (
         <>
-            <div className={`w-full h-auto flex flex-col justify-start items-center relative overflow-hidden`}>
+            <div className={`w-full h-auto flex flex-col justify-start items-center scroll-bar relative overflow-hidden`}>
                 <Navbar pathname={pathname}/>
 
                 <div className={`absolute ${newsVisible ? "block" : "hidden"} overflow-hidden pointer-events-none duration-300 ease-in-out top-0 z-40 h-full w-full bg-black/70`}></div>
@@ -166,7 +166,7 @@ function page() {
                 <hr className={`w-[90%] md:w-[95%] md:rounded-full h-[2px] md:h-[4px] mt-5 bg-gradient-to-r from-red-400 via-red-700 to-red-900`} />
 
                 {/* all news */}
-                <div className={`w-full flex flex-col pb-10 justify-start items-center `}>
+                <div className={`w-full scroll-bar flex flex-col pb-10 justify-start items-center `}>
                     <h2 className={`w-full mt-5 text-start font-Archivo font-semibold text-2xl capitalize px-5 ${inputVisible ? "hidden" : "block"}`}>{newsOption==='india' ? "All": newsOption}</h2>
                     <h2 className={`w-full mt-5 text-start font-Archivo font-semibold text-2xl capitalize px-5 ${inputVisible ? "block" : "hidden"}`}>Results for {input}</h2>
 

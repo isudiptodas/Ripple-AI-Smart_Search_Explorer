@@ -67,9 +67,10 @@ function page() {
         model: "gemini-2.5-flash",
         contents: tempStr,
       });
+
+      setOutputText('');
       //console.log(response.text);
       const temp: string[] | undefined = response.text?.split(" ");
-      let index = 0;
 
       if (temp && temp.length > 0) {
         let index = 0;

@@ -28,7 +28,7 @@ function Navbar({pathname} : {pathname : string}) {
                     <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-white bg-red-500 px-4" : "text-black"} py-2 rounded-full font-Montserrat font-semibold text-[14px] xl:text-[16px]`}>Chat</Link>
                     <Link href='/news' className={`w-full ${pathname === '/news' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>News</Link>
                     <Link href='/share' className={`w-full ${pathname === '/share' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Share</Link>
-                    <Link href='/decision-arena' className={`w-full ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Decision Arena (Beta)</Link>
+                    <Link href='/decision-arena' className={`w-auto ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black"} py-2 font-Montserrat flex gap-2 shrink-0 font-semibold text-[14px] xl:text-[16px] rounded-full`}>Decision Arena</Link>
                 </div>
 
             </div>
