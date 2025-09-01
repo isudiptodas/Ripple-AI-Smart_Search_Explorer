@@ -26,9 +26,26 @@ export async function POST(req: NextRequest) {
             }, { status: 500 });
         }
     }
+    else if (type === 'caesar') {
+        const { message, key } = body;
 
-    return NextResponse.json({
-        success: true,
-        message: "Message Encrypted",
-    }, { status: 201 });
+        try {
+
+            const final = CryptoJS.AES.encrypt(message, key as string).toString();
+
+            return NextResponse.json({
+                success: true,
+                message: "Message Encrypted",
+                encrypted: final,
+            }, { status: 201 });
+
+        } catch (err) {
+            console.log(err);
+            return NextResponse.json({
+                success: false,
+                message: "Something went wrong",
+            }, { status: 500 });
+        }
+    }
+
 }
