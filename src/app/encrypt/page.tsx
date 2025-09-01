@@ -253,7 +253,7 @@ function page() {
           <p className={`w-full mt-3 lg:mt-6 text-[10px] sm:text-[12px] md:text-sm lg:text-[16px] font-Montserrat text-center italic`}>Encrypt and decrypt your secret messages for secret communication with our 3 layered secured encryption</p>
         </div>
 
-        <div className={`w-[70%] overflow-x-auto scroll-bar mt-3 sm:w-auto px-2 py-2 bg-gray-200 rounded-lg h-auto flex justify-start sm:justify-center items-center gap-3`}>
+        <div className={`w-[90%] overflow-x-auto scroll-bar mt-3 sm:w-auto px-2 py-2 bg-gray-200 rounded-lg h-auto flex justify-start sm:justify-center items-center gap-3`}>
           <p onClick={() => {
             setOption('emoji');
             setEncryptMessage('');
@@ -343,4 +343,5 @@ function page() {
 }
 
 export default page
+
 
