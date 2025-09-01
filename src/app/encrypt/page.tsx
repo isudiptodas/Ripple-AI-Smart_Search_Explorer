@@ -208,14 +208,14 @@ function page() {
     }
 
     const id = toast.loading("Decrypting ...");
-    console.log(output);
+    //console.log(output);
     try {
       const res = await axios.post(`/api/decrypt`, {
         message: output, key: decryptSecretKey, type: 'caesar'
       });
 
       const decrypted = res.data?.decrypted;
-      console.log(decrypted);
+      //console.log(decrypted);
       setOutputMessage(decrypted);
 
     } catch (err) {
@@ -343,3 +343,4 @@ function page() {
 }
 
 export default page
+
