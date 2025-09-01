@@ -75,7 +75,7 @@ function Page() {
                         return <span onClick={() => {
                             setFeedbackVisible(true);
                             setCurrentFeedback(opt.feedback);
-                        }} key={index} className={`w-full rounded-lg hover:shadow-xl duration-200 ease-in-out border-[1px] border-black cursor-pointer text-center text-[12px] sm:text-sm py-3 md:py-5 px-4`}>{opt.text}</span>
+                        }} key={index} className={`w-full rounded-lg hover:shadow-xl duration-200 ease-in-out border-[1px] border-black cursor-pointer text-center text-[10px] sm:text-sm py-3 md:py-5 px-4`}>{opt.text}</span>
                     })}
                    </div>
                 </div>
@@ -95,4 +95,3 @@ export default function PageWrapper() {
         </Suspense>
     )
 }
-

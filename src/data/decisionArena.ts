@@ -821,7 +821,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 4,
+        id: 5,
         category: "💼 Workplace Ethics",
         description: "Make thoughtful decisions at work — professionalism, honesty, and teamwork matter! 🧑‍💼🤝",
         questions: [
@@ -1078,7 +1078,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 5,
+        id: 6,
         category: "💪 Health & Fitness",
         description: "Everyday choices for a healthier body and mind — make wellness fun and easy! 🥗🏃‍♂️🧘‍♀️",
         questions: [
@@ -1385,7 +1385,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         category: "🌍 Travel Decisions",
         description: "Make smart and safe choices while exploring the world! 🧳✈️",
         questions: [
@@ -1642,7 +1642,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         category: "🐶 Pet & Animal Care",
         description: "Make thoughtful decisions to keep your pets and animals happy and healthy! 🐾❤️",
         questions: [
@@ -1949,7 +1949,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 8,
+        id: 9,
         category: "🗣️ Social Situations",
         description: "Navigate friendships, networking, and daily interactions wisely! 💬🤝",
         questions: [
@@ -2256,7 +2256,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 9,
+        id: 10,
         category: "🧩 Logic & Brain Tricks",
         description: "Sharpen your mind with tricky situations and brain teasers! 🧠✨",
         questions: [
@@ -2513,7 +2513,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 10,
+        id: 11,
         category: "💰 Money & Savings",
         description: "Test your financial wisdom and learn smart saving habits! 🏦✨",
         questions: [
@@ -2820,7 +2820,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 11,
+        id: 12,
         category: "🧐 Critical Thinking",
         description: "Challenge your mind and improve your reasoning skills! 💡🧠",
         questions: [
@@ -3127,7 +3127,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 12,
+        id: 13,
         category: "🚨 Safety & Emergency",
         description: "Test your safety knowledge and learn smart emergency responses! 🦺⚡",
         questions: [
@@ -3434,7 +3434,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 13,
+        id: 14,
         category: "👪 Parenting & Family",
         description: "Test your parenting instincts and family decision skills! ❤️🏠",
         questions: [
@@ -3741,7 +3741,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 14,
+        id: 15,
         category: "💞 Emotional Intelligence",
         description: "Test your empathy, self-awareness, and social skills! 🌟🧠",
         questions: [
@@ -4048,7 +4048,7 @@ export const decisionQuestions = [
         ]
     },
     {
-        id: 15,
+        id: 4,
         category: "🌍 Environmental Decisions",
         description: "Everyday choices that affect our planet — make a difference one decision at a time! 🌿♻️",
         questions: [
@@ -4356,4 +4356,3 @@ export const decisionQuestions = [
     },
 
 ];
-
