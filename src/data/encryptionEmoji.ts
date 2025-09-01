@@ -14,7 +14,7 @@ export const encrypt = [
   { key: 'm', value: '🥎' }, { key: 'n', value: '🥊' }, { key: 'o', value: '🏓' }, { key: 'p', value: '🥁' },
   { key: 'q', value: '🎸' }, { key: 'r', value: '🎷' }, { key: 's', value: '🎺' }, { key: 't', value: '🪕' },
 
-  { key: 'u', value: '🎻' }, { key: 'v', value: '🥁' }, { key: 'w', value: '🎧' }, { key: 'x', value: '🎹' },
+  { key: 'u', value: '🎻' }, { key: 'v', value: '🪗' }, { key: 'w', value: '🎧' }, { key: 'x', value: '🎹' },
   { key: 'y', value: '💻' }, { key: 'z', value: '📱' },
 
   { key: '0', value: '🎲' }, { key: '1', value: '🛹' }, { key: '2', value: '🎳' }, { key: '3', value: '🧸' },
