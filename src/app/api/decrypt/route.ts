@@ -51,6 +51,51 @@ export async function POST(req: NextRequest) {
             }, { status: 500 });
         }
     }
+    else if (type === 'ascii') {
+        const { message, key } = body;
+
+        try {
+
+            const bytes = CryptoJS.AES.decrypt(message, key as string);
+            const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+            console.log(bytes);
+            return NextResponse.json({
+                success: true,
+                message: "Message Decrypted",
+                decrypted,
+            }, { status: 200 });
+
+        } catch (err) {
+            console.log(err);
+            return NextResponse.json({
+                success: false,
+                message: "Something went wrong",
+            }, { status: 500 });
+        }
+    }
+    else if (type === 'phrase') {
+        const { message, key } = body;
+
+        try {
+
+            const bytes = CryptoJS.AES.decrypt(message, key as string);
+            const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+            return NextResponse.json({
+                success: true,
+                message: "Message Decrypted",
+                decrypted,
+            }, { status: 200 });
+
+        } catch (err) {
+            console.log(err);
+            return NextResponse.json({
+                success: false,
+                message: "Something went wrong",
+            }, { status: 500 });
+        }
+    }
     else {
         return NextResponse.json({
             success: false,

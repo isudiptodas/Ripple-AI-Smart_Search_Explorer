@@ -9,11 +9,13 @@ import { toast } from "sonner"
 import { FaLock } from "react-icons/fa";
 import { FaLockOpen } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
+import { decryptASCII, encryptASCII } from "@/data/encryptionASCII"
+import { decryptPhrase, encryptPhrase } from "@/data/encryptionPhrase"
 
 function page() {
 
   const pathname = usePathname();
-  const [option, setOption] = useState('caesar');
+  const [option, setOption] = useState('phrase');
   const [encryptMessage, setEncryptMessage] = useState('');
   const [encryptSecretKey, setEncryptSecretKey] = useState('');
   const [decryptMessage, setDecryptMessage] = useState('');
@@ -24,6 +26,9 @@ function page() {
   const [caesarOutput, setCaesarOutput] = useState('');
   const [outputEmoji, setOutputEmoji] = useState('');
   const [outputMessage, setOutputMessage] = useState('');
+
+  const [asciiOutput, setAsciiOutput] = useState('');
+  const [phraseOutput, setPhraseOutput] = useState('');
 
   const emojiEncrypt = async () => {
     if (option === 'emoji' && !encryptMessage) {
@@ -231,6 +236,213 @@ function page() {
     }
   }
 
+  const asciiEncrypt = async () => {
+    if (option === 'ascii' && !encryptMessage) {
+      toast.error("Enter message");
+      return;
+    }
+    if (option === 'ascii' && !encryptSecretKey) {
+      toast.error("Enter secret key");
+      return;
+    }
+    if (encryptSecretKey.length < 6) {
+      toast.error("Secrey key length : minimum 6");
+      return;
+    }
+
+    setEncryptMessage(encryptMessage.trim());
+    setEncryptSecretKey(encryptSecretKey.trim());
+
+    const id = toast.loading("Encrypting ...");
+
+    try {
+      const res = await axios.post(`/api/encrypt`, {
+        message: encryptMessage, key: encryptSecretKey, type: 'ascii'
+      });
+
+      const encrypted = res.data?.encrypted;
+      console.log(encrypted);
+
+      if (encrypted) {
+
+        toast.dismiss(id);
+        const temp = Array.from(encrypted);
+
+        let output = '';
+        for (let i = 0; i < temp.length; i++) {
+          const char: string = temp[i] as string;
+          const found = encryptASCII.find((val) => val.key === char);
+          if (found) {
+            output += found.value + '.';
+          }
+        }
+        setAsciiOutput(output);
+      }
+
+    } catch (err) {
+      console.log(err);
+      toast.dismiss(id);
+      toast.error("Something went wrong");
+    }
+    finally {
+      toast.dismiss(id);
+      setEncryptMessage('');
+      setEncryptSecretKey('');
+    }
+  }
+
+  const phraseEncrypt = async () => {
+    if (option === 'phrase' && !encryptMessage) {
+      toast.error("Enter message");
+      return;
+    }
+    if (option === 'phrase' && !encryptSecretKey) {
+      toast.error("Enter secret key");
+      return;
+    }
+    if (encryptSecretKey.length < 6) {
+      toast.error("Secrey key length : minimum 6");
+      return;
+    }
+
+    setEncryptMessage(encryptMessage.trim());
+    setEncryptSecretKey(encryptSecretKey.trim());
+
+    const id = toast.loading("Encrypting ...");
+
+    try {
+      const res = await axios.post(`/api/encrypt`, {
+        message: encryptMessage, key: encryptSecretKey, type: 'phrase'
+      });
+
+      const encrypted = res.data?.encrypted;
+      console.log(encrypted);
+
+      if (encrypted) {
+
+        toast.dismiss(id);
+        const temp = Array.from(encrypted);
+
+        let output = '';
+        for (let i = 0; i < temp.length; i++) {
+          const char: string = temp[i] as string;
+          const found = encryptPhrase.find((val) => val.key === char);
+          if (found) {
+            output += found.value + '-';
+          }
+        }
+        setPhraseOutput(output);
+      }
+
+    } catch (err) {
+      console.log(err);
+      toast.dismiss(id);
+      toast.error("Something went wrong");
+    }
+    finally {
+      toast.dismiss(id);
+      setEncryptMessage('');
+      setEncryptSecretKey('');
+    }
+  }
+
+  const asciiDecrypt = async () => {
+    if (option === 'ascii' && !decryptMessage) {
+      toast.error("Enter message");
+      return;
+    }
+    if (option === 'ascii' && !decryptSecretKey) {
+      toast.error("Enter secret key");
+      return;
+    }
+
+    setDecryptSecretKey(decryptSecretKey.trim());
+
+    const temp = decryptMessage.split('.');
+    let output = '';
+    //console.log(temp);
+
+    for (let i = 0; i < temp.length; i++) {
+      const char: string = temp[i] as string;
+      const found = decryptASCII.find((val) => val.key === char);
+      if (found) {
+        output += found.value;
+      }
+    }
+
+    //console.log(output);
+    const id = toast.loading("Decrypting ...");
+
+    try {
+      const res = await axios.post(`/api/decrypt`, {
+        message: output, key: decryptSecretKey, type: 'ascii'
+      });
+
+      const decrypted = res.data?.decrypted;
+      //console.log(decrypted);
+      setOutputMessage(decrypted);
+
+    } catch (err) {
+      console.log(err);
+      toast.dismiss(id);
+      toast.error("Something went wrong");
+    }
+    finally {
+      toast.dismiss(id);
+      setDecryptMessage('');
+      setDecryptSecretKey('');
+      setDecryptShiftNumber(null);
+    }
+  }
+
+  const phraseDecrypt = async () => {
+    if (option === 'phrase' && !decryptMessage) {
+      toast.error("Enter message");
+      return;
+    }
+    if (option === 'phrase' && !decryptSecretKey) {
+      toast.error("Enter secret key");
+      return;
+    }
+
+    setDecryptSecretKey(decryptSecretKey.trim());
+
+    const temp = decryptMessage.split('-');
+    let output = '';
+    //console.log(temp);
+
+    for (let i = 0; i < temp.length; i++) {
+      const char: string = temp[i] as string;
+      const found = decryptPhrase.find((val) => val.key === char);
+      if (found) {
+        output += found.value;
+      }
+    }
+
+    console.log(output);
+    const id = toast.loading("Decrypting ...");
+
+    try {
+      const res = await axios.post(`/api/decrypt`, {
+        message: output, key: decryptSecretKey, type: 'phrase'
+      });
+
+      const decrypted = res.data?.decrypted;
+      setOutputMessage(decrypted);
+
+    } catch (err) {
+      console.log(err);
+      toast.dismiss(id);
+      toast.error("Something went wrong");
+    }
+    finally {
+      toast.dismiss(id);
+      setDecryptMessage('');
+      setDecryptSecretKey('');
+      setDecryptShiftNumber(null);
+    }
+  }
+
   const copyEmoji = () => {
     navigator.clipboard.writeText(outputEmoji);
     toast.success("Emoji copied");
@@ -239,6 +451,16 @@ function page() {
   const copyCaesar = () => {
     navigator.clipboard.writeText(caesarOutput);
     toast.success("Caesar copied");
+  }
+
+  const copyAscii = () => {
+    navigator.clipboard.writeText(asciiOutput);
+    toast.success("ASCII art copied");
+  }
+
+  const copyPhrase = () => {
+    navigator.clipboard.writeText(phraseOutput);
+    toast.success("Phrase copied");
   }
 
   return (
@@ -264,6 +486,8 @@ function page() {
             setDecryptSecretKey('');
             setOutputMessage('');
             setOutputEmoji('');
+            setAsciiOutput('');
+            setPhraseOutput('');
           }} className={`w-auto shrink-0 py-3 px-4 rounded-lg cursor-pointer text-center ${option === 'emoji' ? "bg-black text-white font-semibold" : "bg-transparent text-black"} active:scale-95 duration-100 ease-in-out font-Montserrat text-sm`}>Emoji</p>
           <p onClick={() => {
             setOption('caesar');
@@ -275,6 +499,8 @@ function page() {
             setDecryptSecretKey('');
             setOutputMessage('');
             setOutputEmoji('');
+            setAsciiOutput('');
+            setPhraseOutput('');
           }} className={`w-auto shrink-0 py-3 px-4 rounded-lg cursor-pointer text-center ${option === 'caesar' ? "bg-black text-white font-semibold" : "bg-transparent text-black"} active:scale-95 duration-100 ease-in-out font-Montserrat text-sm`}>Caesar Cipher</p>
           <p onClick={() => {
             setOption('ascii');
@@ -286,17 +512,32 @@ function page() {
             setDecryptSecretKey('');
             setOutputMessage('');
             setOutputEmoji('');
+            setAsciiOutput('');
+            setPhraseOutput('');
           }} className={`w-auto shrink-0 py-3 px-4 rounded-lg cursor-pointer text-center ${option === 'ascii' ? "bg-black text-white font-semibold" : "bg-transparent text-black"} active:scale-95 duration-100 ease-in-out font-Montserrat text-sm`}>ASCII Art</p>
+          <p onClick={() => {
+            setOption('phrase');
+            setEncryptMessage('');
+            setEncryptShiftNumber(0);
+            setEncryptSecretKey('');
+            setDecryptMessage('');
+            setDecryptShiftNumber(0);
+            setDecryptSecretKey('');
+            setOutputMessage('');
+            setOutputEmoji('');
+            setAsciiOutput('');
+            setPhraseOutput('');
+          }} className={`w-auto shrink-0 py-3 px-4 rounded-lg cursor-pointer text-center ${option === 'phrase' ? "bg-black text-white font-semibold" : "bg-transparent text-black"} active:scale-95 duration-100 ease-in-out font-Montserrat text-sm`}>Phrase</p>
         </div>
 
-        {option === 'emoji' && <div className={`w-[85%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
+        {option === 'emoji' && <div className={`w-[90%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
           <h1 className={`w-full text-start font-Montserrat text-xl font-semibold`}>Encrypt</h1>
           <textarea value={encryptMessage} onChange={(e) => setEncryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your message" />
           <input value={encryptSecretKey} onChange={(e) => setEncryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
           <p onClick={emojiEncrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white`}>Encrypt <FaLock /></p>
 
           <div className={`w-full ${outputEmoji ? "block" : "hidden"} bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
-            {outputEmoji}
+            <p className={`w-full text-start font-Montserrat text-sm`}>{outputEmoji}</p>
             <span className={`w-auto absolute top-2 rounded-xl right-2 flex justify-center items-center gap-2 px-3 py-2 text-[10px] cursor-pointer bg-white text-black`} onClick={copyEmoji}>Copy <FaCopy /></span>
           </div>
 
@@ -305,12 +546,12 @@ function page() {
           <input value={decryptSecretKey} onChange={(e) => setDecryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
           <p onClick={emojiDecrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-blue-400 hover:bg-blue-500 text-white`}>Decrypt <FaLockOpen /></p>
 
-          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-hidden bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-x-auto scroll-bar bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
             <p className={`w-full text-start text-white font-Montserrat text-sm`}>{outputMessage}</p>
           </div>
         </div>}
 
-        {option === 'caesar' && <div className={`w-[85%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
+        {option === 'caesar' && <div className={`w-[90%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
           <h1 className={`w-full text-start font-Montserrat text-xl font-semibold`}>Encrypt</h1>
           <textarea value={encryptMessage} onChange={(e) => setEncryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your message" />
           <input value={encryptSecretKey} onChange={(e) => setEncryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
@@ -328,14 +569,53 @@ function page() {
           <input value={decryptShiftNumber ? decryptShiftNumber : ''} onChange={(e) => setDecryptShiftNumber(Number(e.target.value))} type="number" placeholder="Enter reverse shift number" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
           <p onClick={caesarDecrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-blue-400 hover:bg-blue-500 text-white`}>Decrypt <FaLockOpen /></p>
 
-          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-hidden bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-x-auto scroll-bar bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
             <p className={`w-full text-start text-white font-Montserrat text-sm`}>{outputMessage}</p>
           </div>
         </div>}
 
-        {option === 'ascii' && <div className={`w-[85%] sm:w-[60%] md:w-[50%] xl:w-[35%] mt-3 h-auto flex flex-col justify-start items-center`}>
-          <h1 className={`w-full mt-10 text-center font-Archivo text-gray-300 text-5xl md:text-6xl font-bold`}>Coming Soon</h1>
+        {option === 'ascii' && <div className={`w-[90%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
+          <h1 className={`w-full text-start font-Montserrat text-xl font-semibold`}>Encrypt</h1>
+          <textarea value={encryptMessage} onChange={(e) => setEncryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your message" />
+          <input value={encryptSecretKey} onChange={(e) => setEncryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
+          <p onClick={asciiEncrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white`}>Encrypt <FaLock /></p>
+
+          <div className={`w-full ${asciiOutput ? "block" : "hidden"} bg-black text-white h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+            <p className={`w-full text-start text-white font-Montserrat text-sm`}>{asciiOutput}</p>
+            <span className={`w-auto absolute top-2 rounded-xl right-2 flex justify-center items-center gap-2 px-3 py-2 text-[10px] cursor-pointer bg-white text-black`} onClick={copyAscii}>Copy <FaCopy /></span>
+          </div>
+
+          <h1 className={`w-full mt-5 text-start font-Montserrat text-xl font-semibold`}>Decrypt</h1>
+          <textarea value={decryptMessage} onChange={(e) => setDecryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your message here" />
+          <input value={decryptSecretKey} onChange={(e) => setDecryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
+          <p onClick={asciiDecrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-blue-400 hover:bg-blue-500 text-white`}>Decrypt <FaLockOpen /></p>
+
+          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-x-auto scroll-bar bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+            <p className={`w-full text-start text-white font-Montserrat text-sm`}>{outputMessage}</p>
+          </div>
         </div>}
+
+        {option === 'phrase' && <div className={`w-[90%] mt-3 sm:w-[60%] md:w-[50%] xl:w-[35%] h-auto px-3 py-4 flex flex-col justify-start items-center gap-3`}>
+          <h1 className={`w-full text-start font-Montserrat text-xl font-semibold`}>Encrypt</h1>
+          <textarea value={encryptMessage} onChange={(e) => setEncryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your message" />
+          <input value={encryptSecretKey} onChange={(e) => setEncryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
+          <p onClick={phraseEncrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white`}>Encrypt <FaLock /></p>
+
+          <div className={`w-full ${phraseOutput ? "block" : "hidden"} bg-black text-white h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+            <p className={`w-full text-start text-white font-Montserrat text-sm`}>{phraseOutput}</p>
+            <span className={`w-auto absolute top-2 rounded-xl right-2 flex justify-center items-center gap-2 px-3 py-2 text-[10px] cursor-pointer bg-white text-black`} onClick={copyPhrase}>Copy <FaCopy /></span>
+          </div>
+
+          <h1 className={`w-full mt-5 text-start font-Montserrat text-xl font-semibold`}>Decrypt</h1>
+          <textarea value={decryptMessage} onChange={(e) => setDecryptMessage(e.target.value)} className={`w-full h-32 rounded-lg bg-gray-200 outline-none font-Montserrat text-black px-3 py-3`} placeholder="Enter your emojis here" />
+          <input value={decryptSecretKey} onChange={(e) => setDecryptSecretKey(e.target.value)} type="text" placeholder="Enter secret key" className={`w-full py-3 px-3 rounded-lg bg-gray-200 font-Montserrat text-black outline-none`} />
+          <p onClick={phraseDecrypt} className={`w-full mt-2 py-2 text-center flex justify-center items-center gap-2 rounded-lg cursor-pointer active:scale-95 duration-100 ease-in-out bg-blue-400 hover:bg-blue-500 text-white`}>Decrypt <FaLockOpen /></p>
+
+          <div className={`w-full ${outputMessage ? "block" : "hidden"} overflow-x-auto scroll-bar bg-black h-auto mt-2 px-3 py-3 rounded-lg text-start relative`}>
+            <p className={`w-full text-start text-white font-Montserrat text-sm`}>{outputMessage}</p>
+          </div>
+        </div>}
+
 
       </div>
     </>
@@ -343,5 +623,6 @@ function page() {
 }
 
 export default page
+
 
 

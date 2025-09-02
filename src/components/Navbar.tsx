@@ -26,11 +26,11 @@ function Navbar({pathname} : {pathname : string}) {
                 </div>
 
                 <div className={`w-auto hidden md:flex justify-between items-start gap-6 px-3 duration-300 ease-in-out`}>
-                    <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-white bg-red-500 px-4" : "text-black"} py-1 rounded-full font-Montserrat font-semibold text-[14px] xl:text-[16px]`}>Chat</Link>
-                    <Link href='/news' className={`w-full ${pathname === '/news' ? "text-white bg-red-500 px-4" : "text-black"} py-1 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>News</Link>
-                    <Link href='/share' className={`w-full ${pathname === '/share' ? "text-white bg-red-500 px-4" : "text-black"} py-1 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Share</Link>
-                    <Link href='/decision-arena' className={`w-auto ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black"} py-1 font-Montserrat flex gap-2 shrink-0 font-semibold text-[14px] xl:text-[16px] rounded-full`}>Decision Arena</Link>
-                    <Link href='/encrypt' className={`w-auto ${pathname === '/encrypt' ? "text-white bg-red-500 px-4" : "text-black"} py-1 font-Montserrat flex gap-2 shrink-0 font-semibold text-[14px] xl:text-[16px] rounded-full`}>Encrypt</Link>
+                    <Link href='/chat' className={`w-full ${pathname === '/chat' ? "text-white bg-red-500 px-4" : "text-black hover:underline "} py-1 rounded-full font-Montserrat font-semibold text-[14px] xl:text-[16px]`}>Chat</Link>
+                    <Link href='/news' className={`w-full ${pathname === '/news' ? "text-white bg-red-500 px-4" : "text-black hover:underline "} py-1 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>News</Link>
+                    <Link href='/share' className={`w-full ${pathname === '/share' ? "text-white bg-red-500 px-4" : "text-black hover:underline "} py-1 font-Montserrat font-semibold text-[14px] xl:text-[16px] rounded-full`}>Share</Link>
+                    <Link href='/decision-arena' className={`w-auto ${pathname === '/decision-arena' ? "text-white bg-red-500 px-4" : "text-black hover:underline "} py-1 font-Montserrat flex gap-2 shrink-0 font-semibold text-[14px] xl:text-[16px] rounded-full`}>Decision Arena</Link>
+                    <Link href='/encrypt' className={`w-auto ${pathname === '/encrypt' ? "text-white bg-red-500 px-4" : "text-black hover:underline "} py-1 font-Montserrat flex gap-2 shrink-0 font-semibold text-[14px] xl:text-[16px] rounded-full`}>Encrypt</Link>
                 </div>
 
             </div>
