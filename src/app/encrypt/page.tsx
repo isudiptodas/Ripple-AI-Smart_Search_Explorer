@@ -15,7 +15,7 @@ import { decryptPhrase, encryptPhrase } from "@/data/encryptionPhrase"
 function page() {
 
   const pathname = usePathname();
-  const [option, setOption] = useState('phrase');
+  const [option, setOption] = useState('emoji');
   const [encryptMessage, setEncryptMessage] = useState('');
   const [encryptSecretKey, setEncryptSecretKey] = useState('');
   const [decryptMessage, setDecryptMessage] = useState('');
@@ -623,6 +623,7 @@ function page() {
 }
 
 export default page
+
 
 
 
