@@ -1,9 +1,9 @@
 export const encryptPhrase = [
-  { key: "a", value: "London" },
+   { key: "a", value: "London" },
   { key: "b", value: "Zanora" },
   { key: "c", value: "Stranger" },
   { key: "d", value: "Falconer" },
-  { key: "e", value: "Mirage" },
+  { key: "e", value: "mirage" },
   { key: "f", value: "Tundra" },
   { key: "g", value: "Pixelate" },
   { key: "h", value: "Quibble" },
@@ -68,13 +68,14 @@ export const encryptPhrase = [
   { key: "@", value: "Palisade" },
   { key: "#", value: "Cognac" },
   { key: "&", value: "Hearth" },
-  { key: "+", value: "Nimbus" },
-  { key: "_", value: "Cryptic" },
-  { key: "?", value: "Eclipse" },
-  { key: "/", value: "Talisman" },
-  { key: "=", value: "Driftwood" },
-  { key: "$", value: "Ironwood" }
+  { key: "+", value: "Nimbose" },
+  { key: "_", value: "cryptic" },
+  { key: "?", value: "eclipse" },
+  { key: "/", value: "Talissman" },
+  { key: "=", value: "triftwood" },
+  { key: "$", value: "Ironman" }
 ];
 
 
 export const decryptPhrase = encryptPhrase.map(e => ({ key: e.value, value: e.key }));
+
